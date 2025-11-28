@@ -67,11 +67,10 @@
                     <h4>Select Package</h4>
                     <select name="package_id" id="package_id" class="form-control" required>
                         <option value="">-- Select Package --</option>
-                        <option value="1">Deluxe</option>
-                        <option value="2">Premium</option>
-                        <option value="3">Akad Nikah</option>
-                        <option value="4">Sanding / Bertandang</option>
-                        <option value="5">Outdoor</option>
+                        @foreach ($packages as $package)
+                            <option value="{{ $package->id }}">{{ $package->name }}</option>
+                        @endforeach
+
                     </select>
                 </div>
                 <br>
@@ -228,7 +227,8 @@
 
 
     </div>
-    {{-- <script>
+    {{--
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const packageEvents = {
                 "1": ["Akad Nikah", "Sanding"],
@@ -273,37 +273,37 @@
         });
     </script> --}}
 
-       <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const packageEvents = {
-            "1": ["Akad Nikah", "Sanding"],
-            "2": ["Akad Nikah", "Sanding"],
-            "3": ["Akad Nikah"],
-            "4": ["Sanding/Bertandang"],
-            "5": ["Outdoor"],
-        };
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const packageEvents = {
+                "1": ["Akad Nikah", "Sanding"],
+                "2": ["Akad Nikah", "Sanding"],
+                "3": ["Akad Nikah"],
+                "4": ["Sanding/Bertandang"],
+                "5": ["Outdoor"],
+            };
 
-        const packageSelect = document.getElementById('package_id');
+            const packageSelect = document.getElementById('package_id');
 
-        packageSelect.addEventListener('change', function () {
-            let selectedPackage = this.value;
-            if (!selectedPackage) {
-                document.getElementById('eventDetails').style.display = 'none';
-                return;
-            }
+            packageSelect.addEventListener('change', function () {
+                let selectedPackage = this.value;
+                if (!selectedPackage) {
+                    document.getElementById('eventDetails').style.display = 'none';
+                    return;
+                }
 
-            let events = packageEvents[selectedPackage];
-            document.getElementById('event1Type').value = events[0];
-            document.getElementById('eventDetails').style.display = 'block';
+                let events = packageEvents[selectedPackage];
+                document.getElementById('event1Type').value = events[0];
+                document.getElementById('eventDetails').style.display = 'block';
 
-            if (events.length > 1) {
-                document.getElementById('event2Type').value = events[1];
-                document.getElementById('event2Details').style.display = 'block';
-            } else {
-                document.getElementById('event2Details').style.display = 'none';
-            }
+                if (events.length > 1) {
+                    document.getElementById('event2Type').value = events[1];
+                    document.getElementById('event2Details').style.display = 'block';
+                } else {
+                    document.getElementById('event2Details').style.display = 'none';
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 @endsection

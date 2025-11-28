@@ -71,7 +71,7 @@ class BookingController extends Controller
         //     ]);
         // }
 
-         // Create Event 2 (if provided)
+        // Create Event 2 (if provided)
         if (!empty($booking['event_2_type'])) {
             $bookingCreate->events()->create([
                 'event_code' => $bookingCode . '-E2',
@@ -105,5 +105,11 @@ class BookingController extends Controller
         // dd($created);
 
         return redirect('/')->with('success', 'Thank you! Your booking was submitted.');
+    }
+
+    public function showForm()
+    {
+        $packages = Packages::all();   // Fetch from DB
+        return view('booking.create', compact('packages'));
     }
 }

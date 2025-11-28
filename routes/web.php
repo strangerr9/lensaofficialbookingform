@@ -16,9 +16,8 @@ use App\Http\Controllers\BookingController;
 |
 */
 
-Route::get('/', function () {
-    return view('/booking/create');
-});
+Route::get('/', [BookingController::class, 'showForm']);
+
 
 
 
