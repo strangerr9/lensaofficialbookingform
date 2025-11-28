@@ -274,25 +274,30 @@
     </script> --}}
 
     <script>
+        const packageEvents = @json(
+            $packages->mapWithKeys(function ($package) {
+                return [$package->id => json_decode($package->events_included)];
+            })
+        );
+    </script>
+
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const packageEvents = {
-                "1": ["Akad Nikah", "Sanding"],
-                "2": ["Akad Nikah", "Sanding"],
-                "3": ["Akad Nikah"],
-                "4": ["Sanding/Bertandang"],
-                "5": ["Outdoor"],
-            };
+
+            console.log(packageEvents); // now it exists
 
             const packageSelect = document.getElementById('package_id');
 
             packageSelect.addEventListener('change', function () {
                 let selectedPackage = this.value;
+
                 if (!selectedPackage) {
                     document.getElementById('eventDetails').style.display = 'none';
                     return;
                 }
 
                 let events = packageEvents[selectedPackage];
+
                 document.getElementById('event1Type').value = events[0];
                 document.getElementById('eventDetails').style.display = 'block';
 
@@ -303,7 +308,9 @@
                     document.getElementById('event2Details').style.display = 'none';
                 }
             });
+
         });
     </script>
+
 
 @endsection
