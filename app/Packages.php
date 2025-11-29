@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Packages extends Model
 {
     protected $fillable = [
-        'name', 'short_code', 'events_included', 'price', 'description'
+        'name', 'short_code', 'events_included', 'price', 'description' ,'visibility','archived',
     ];
 
     public function bookings()

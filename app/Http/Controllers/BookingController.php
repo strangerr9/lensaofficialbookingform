@@ -109,7 +109,7 @@ class BookingController extends Controller
 
     public function showForm()
     {
-        $packages = Packages::all();   // Fetch from DB
+        $packages = Packages::where('visibility', true)->get();   // Fetch from DB
         return view('booking.create', compact('packages'));
     }
 }
